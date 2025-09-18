@@ -33,6 +33,7 @@ preload.wrapper.js
 bundles/
 ts/sql/mainWorker.bundle.js.LICENSE.txt
 build/ICUMessageParams.d.ts
+.pnpm-store
 
 # React / TypeScript
 app/*.js
