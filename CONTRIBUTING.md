@@ -34,22 +34,27 @@ Install the [Xcode Command-Line Tools](http://osxdaily.com/2014/02/12/install-co
 
 ### Windows
 
-1.  Download _Build Tools for Visual Studio 2022 Community Edition_ from [Microsoft's website](https://visualstudio.microsoft.com/vs/community/) and install it, including the "Desktop development with C++" option.
-2.  Download and install the latest Python 3 release from https://www.python.org/downloads/windows/ (3.6 or later required).
+1. Download _Build Tools for Visual Studio 2022 Community Edition_
+from [Microsoft's website](https://visualstudio.microsoft.com/vs/community/)
+and install it, including the "Desktop development with C++" option.
+1. Download and install the latest
+[Python 3](https://www.python.org/downloads/windows/) release
+(3.6 or later required).
 
 ### Linux
 
-1.  Pick your favorite package manager.
-1.  Install `python` (Python 3.6+)
-1.  Install `gcc`
-1.  Install `g++`
-1.  Install `make`
+1. Pick your favorite package manager.
+1. Install `python` (Python 3.6+)
+1. Install `gcc`
+1. Install `g++`
+1. Install `make`
 
 ### All platforms
 
-Now, run these commands in your preferred terminal in a good directory for development:
+Now, run these commands (without the comments) in your preferred terminal
+in a good directory for development:
 
-```
+```sh
 git clone https://github.com/signalapp/Signal-Desktop.git
 cd Signal-Desktop
 npm install -g pnpm
@@ -71,7 +76,7 @@ command-line like you did during setup. You can make it easier on yourself by ge
 the latest built assets when you change a file. Run each of these in their own terminal
 instance while you make changes - they'll run until you stop them:
 
-```
+```sh
 pnpm run dev:transpile # recompiles when you change .ts files
 pnpm run dev:sass      # recompiles when you change .scss files
 ```
@@ -82,9 +87,11 @@ pnpm run dev:sass      # recompiles when you change .scss files
 
 `yarn install` may print an error like the following, but it can be ignored because the overall operation succeeds.
 
+```sh
+./node_modules/.bin/electron-builder install-app-deps
 ```
-$ ./node_modules/.bin/electron-builder install-app-deps
 
+```log
   • electron-builder  version=24.6.3
   • loaded configuration  file=package.json ("build" field)
   • rebuilding native dependencies  dependencies=@nodert-win10-rs4/windows.data.xml.dom@0.4.4, @nodert-win10-rs4/windows.ui.notifications@0.4.4, @signalapp/better-sqlite3@8.7.1, @signalapp/windows-dummy-keystroke@1.0.0, bufferutil@4.0.7, fs-xattr@0.3.0, mac-screen-capture-permissions@2.0.0, utf-8-validate@5.0.10
@@ -121,7 +128,7 @@ Some parts of the app (such as the Sticker Creator) have moved to webpack.
 You can run a development server for these parts of the app with the
 following command:
 
-```
+```sh
 pnpm run dev
 ```
 
@@ -129,7 +136,7 @@ In order for the app to make requests to the development server you must set
 the `SIGNAL_ENABLE_HTTP` environment variable to a truthy value. On Linux and
 macOS, that simply looks like this:
 
-```
+```sh
 SIGNAL_ENABLE_HTTP=1 pnpm start
 ```
 
@@ -186,7 +193,7 @@ between them using the `NODE_APP_INSTANCE` environment variable.
 For example, to create an 'alice' profile, put a file called `local-alice.json` in the
 `/config` subdirectory of your project checkout where you'll find other `.json` config files:
 
-```
+```json
 {
   "storageProfile": "aliceProfile"
 }
@@ -194,18 +201,18 @@ For example, to create an 'alice' profile, put a file called `local-alice.json` 
 
 Then you can start up the application a little differently to load the profile:
 
-```
+```sh
 NODE_APP_INSTANCE=alice pnpm start
 ```
 
 This changes the `userData` directory from `%appData%/Signal` to `%appData%/Signal-aliceProfile`.
 
-# Making changes
+## Making changes
 
 So you're in the process of preparing that pull request. Here's how to make that go
 smoothly.
 
-## Tests
+### Tests
 
 Please write tests! Our testing framework is
 [mocha](http://mochajs.org/) and our assertion library is
@@ -215,7 +222,7 @@ The easiest way to run all tests at once is `pnpm test`, which will run them on 
 command line. You can run the client-side tests in an interactive session with
 `NODE_ENV=test pnpm start`.
 
-## Pull requests
+### Pull requests
 
 So you wanna make a pull request? Please observe the following guidelines.
 
@@ -245,9 +252,9 @@ So you wanna make a pull request? Please observe the following guidelines.
   for some tips on formatting. As far as content, try to include the following in your
   summary:
 
-  1.  What you changed
-  2.  Why this change was made. If there is a relevant [GitHub Issue](https://github.com/signalapp/Signal-Desktop/issues), please include the Issue number.
-  3.  Any relevant technical details or motivations for your implementation
+  1. What you changed
+  1. Why this change was made. If there is a relevant [GitHub Issue](https://github.com/signalapp/Signal-Desktop/issues), please include the Issue number.
+  1. Any relevant technical details or motivations for your implementation
       choices that may be helpful to someone reviewing or auditing the commit
       history in the future. When in doubt, err on the side of a longer
       commit message.
@@ -256,7 +263,7 @@ Above all, spend some time with the repository. Follow the pull request template
 your pull request description automatically. Take a look at recent approved pull requests,
 see how they did things.
 
-## Linking to a staging mobile device
+### Linking to a staging mobile device
 
 Multiple standalone desktop devices are great for testing of a lot of scenarios. But a lot
 of the Signal experience requires a primary mobile device: contact management,
@@ -281,7 +288,7 @@ Then you can set up your development build of Signal Desktop as normal. If you'v
 set up as a standalone install, you can switch by opening the DevTools (View -> Toggle
 Developer Tools) and entering this into the Console and pressing enter: `window.reduxActions.app.openInstaller();`
 
-## Changing to production
+### Changing to production
 
 If you're completely sure that your changes will have no impact to the production servers,
 you can connect your development build to the production server by putting a file called
@@ -293,32 +300,32 @@ infrastructure doesn't kick in while you're developing.
 production servers will _unregister_ your mobile device! All messages from your contacts
 will go to your new development desktop app instead of your phone.
 
-## Testing Production Builds
+### Testing Production Builds
 
 To test changes to the build system, build a release using
 
-```
+```sh
 pnpm run generate
 pnpm run build
 ```
 
 Then, run the tests using `pnpm run test-release`.
 
-### Testing MacOS builds
+#### Testing MacOS builds
 
 macOS requires apps to be code signed with an Apple certificate. To test development builds
 you can ad-hoc sign the packaged app which will let you run it locally.
 
 1. In `package.json` remove the macOS signing script: `"sign": "./ts/scripts/sign-macos.js",`
-2. Build the app and ad-hoc sign the app bundle:
+1. Build the app and ad-hoc sign the app bundle:
 
-```
-pnpm run generate
-pnpm run build
-cd release
-# Pick the desired app bundle: mac, mac-arm64, or mac-universal
-cd mac-arm64
-codesign --force --deep --sign - Signal.app
-```
+    ```sh
+    pnpm run generate
+    pnpm run build
+    cd release
+    # Pick the desired app bundle: mac, mac-arm64, or mac-universal
+    cd mac-arm64
+    codesign --force --deep --sign - Signal.app
+    ```
 
-3. Now you can run the app locally.
+1. Now you can run the app locally.

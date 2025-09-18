@@ -12,7 +12,7 @@ Remember, you can preview this before saving it.
 - [ ] I have read the [README](https://github.com/signalapp/Signal-Desktop/blob/main/README.md) and [Contributor Guidelines](https://github.com/signalapp/Signal-Desktop/blob/main/CONTRIBUTING.md)
 - [ ] I have signed the [Contributor Licence Agreement](https://signal.org/cla/)
 
-### Contributor checklist:
+### Contributor checklist
 
 - [ ] My contribution is **not** related to translations.
 - [ ] My commits are in nice logical chunks with [good commit messages](http://chris.beams.io/posts/git-commit/)

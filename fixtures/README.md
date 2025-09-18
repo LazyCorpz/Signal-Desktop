@@ -1,4 +1,6 @@
 <!-- Copyright 2018 Signal Messenger, LLC -->
 <!-- SPDX-License-Identifier: AGPL-3.0-only -->
 
+# Fixtures
+
 A collection of fixture files. These files were made available in the public domain.
