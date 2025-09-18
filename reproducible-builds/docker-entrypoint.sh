@@ -2,6 +2,7 @@
 # Copyright 2024 Signal Messenger, LLC
 # SPDX-License-Identifier: AGPL-3.0-only
 
+# shellcheck disable=SC2154
 trap '[[ $pid ]] && kill $pid; exit' EXIT
 
 set -x
