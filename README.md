@@ -18,7 +18,7 @@ Please search for any [existing issues](https://github.com/signalapp/Signal-Desk
 
 ## Have a feature request, question, comment?
 
-Please use our community forum: https://community.signalusers.org/
+Please use our [community forum](https://community.signalusers.org/)
 
 ## Contributing Code
 
@@ -42,4 +42,4 @@ The form and manner of this distribution makes it eligible for export under the 
 
 Copyright 2013-2024 Signal Messenger, LLC
 
-Licensed under the GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
+Licensed under the GNU AGPLv3: <https://www.gnu.org/licenses/agpl-3.0.html>

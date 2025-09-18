@@ -32,8 +32,8 @@ Reproducible builds for macOS and Windows are not available yet.
 First, grab the source code by using `git`:
 
 ```bash
-$ git clone https://github.com/signalapp/Signal-Desktop.git
-$ cd Signal-Desktop/
+git clone https://github.com/signalapp/Signal-Desktop.git
+cd Signal-Desktop/
 ```
 
 This will download Signal Desktop's source code under the `Signal-Desktop` directory.
@@ -41,17 +41,20 @@ This will download Signal Desktop's source code under the `Signal-Desktop` direc
 Now, select the version/branch you would like to verify. For instance, if you are trying to build `7.45.0`, then do:
 
 ```bash
-$ git checkout tags/v7.45.0
+git checkout tags/v7.45.0
 ```
 
 > [!NOTE]
-> This guide uses `v7.45.0` as the placeholder version. You may want to change this version to the most recent one. All the versions are available here: https://github.com/signalapp/Signal-Desktop/tags. Older versions may however not be reproducible.
+> This guide uses `v7.45.0` as the placeholder version. You may want to change this version to the most recent one. All the versions are available here: <https://github.com/signalapp/Signal-Desktop/tags>. Older versions may however not be reproducible.
 
 At this point we are now on the branch of the source code used to build version `v7.45.0`. Before continuing, make sure your shell is in the `reproducible-builds` directory:
 
 ```bash
-$ cd reproducible-builds/
-$ pwd
+cd reproducible-builds/
+pwd
+```
+
+```log
 [...]/Signal-Desktop/reproducible-builds
 ```
 
@@ -61,8 +64,8 @@ The last step is to run the `./build.sh` script, passing the `public` arg becaus
 > If your user is not in Docker's `docker` group, then you may need to run the script as `sudo`.
 
 ```bash
-$ chmod +x ./build.sh
-$ ./build.sh public
+chmod +x ./build.sh
+./build.sh public
 ```
 
 This bash script will create the Docker container where Signal Desktop will be built, then download the required dependencies and start the build inside the container.
@@ -76,10 +79,13 @@ After the build is completed, the resulting file will be available in the `Signa
 > [!NOTE]
 > For this step you will require a distro using the `apt` package manager, such as Debian, Ubuntu, Linux Mint, etc.
 
-If you have followed the official Linux instructions to install Signal Desktop at https://signal.org/download/, then you will have the `signal-desktop` app available in your `apt` repositories. You can then simply grab the latest release build by typing:
+If you have followed the official Linux instructions to
+[install Signal Desktop](https://signal.org/download/), then you will have the
+`signal-desktop` app available in your `apt` repositories.
+You can then simply grab the latest release build by running:
 
 ```bash
-$ apt download signal-desktop
+apt download signal-desktop
 ```
 
 This will automatically download the `.deb` package into the shell's working directory.
@@ -95,13 +101,15 @@ If the checksums from the official build and your own build match, then the two 
 
 > [!TIP]
 > Make sure your build is on the same version as the official build, otherwise they will not have the same checksum.
-
+>
 > [!WARNING]
 > Do not compare your output against the checksums given below! They only serve as a visual example of what the output would look like. Yours will look different!
 
 ```bash
-$ sha256sum ../release/signal-desktop_7.45.0_amd64-OUR_BUILD.deb signal-desktop_7.45.0_amd64_OFFICIAL_BUILD.deb
+sha256sum ../release/signal-desktop_7.45.0_amd64-OUR_BUILD.deb signal-desktop_7.45.0_amd64_OFFICIAL_BUILD.deb
+```
 
+```log
 0df3d06f74c6855559ef079b368326ca18e144a28ede559fd76648a62ec3eed7  ../release/signal-desktop_7.45.0_amd64-OUR_BUILD.deb
 0df3d06f74c6855559ef079b368326ca18e144a28ede559fd76648a62ec3eed7  signal-desktop_7.45.0_amd64_OFFICIAL_BUILD.deb
 ```
