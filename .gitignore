@@ -34,11 +34,13 @@ bundles/
 ts/sql/mainWorker.bundle.js.LICENSE.txt
 build/ICUMessageParams.d.ts
 .pnpm-store
+node-compile-cache
 
 # React / TypeScript
 app/*.js
 ts/**/*.js
 ts/protobuf/*.d.ts
+**/*.min.js
 
 # CSS Modules
 **/*.scss.d.ts
